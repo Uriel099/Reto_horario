@@ -1,7 +1,3 @@
-CREATE DATABASE Reto;
-
-USE Reto;
-
 CREATE TABLE Carrera(
     ID_Carrera int NOT NULL AUTO_INCREMENT,
     Nombre varchar(200),

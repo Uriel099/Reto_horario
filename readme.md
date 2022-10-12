@@ -1,6 +1,6 @@
 # Reto rest api alumnos
 
-para este reto vamos a crear una api en la que unicamente registraremos una curricula escolar que esta conformada por cuatro tablas: 
+para este reto vamos a crear una api en la que registramos una curricula escolar que está conformada por cuatro tablas:
  * carrera
  * materias
  * grupo
@@ -18,7 +18,7 @@ El modelo relacional es el siguiente
     <img src='BD_relacional.jpg' style='text-align: center'>
 </p>
 
-pueden obtener el código para generar la base de datos en el archivos bd.sql en este reporitorio o en el siguiente fragmento de código
+pueden obtener el código para generar la base de datos en el archivos bd.sql en este repositorio o en el siguiente fragmento de código
 
 ~~~sql
 CREATE DATABASE Reto;
@@ -60,22 +60,36 @@ CREATE TABLE Horario(
 );
 ~~~
 
-en el caso de importar el archivo sql hay que dirigirse al directorio en que esta instalado mariadb y en la carpeta bin utilizando una terminal ejecutar el siguiente comando:
+en el caso de importar el archivo sql hay que dirigirse al directorio en que está instalado mariadb y en la carpeta bin utilizando una terminal ejecutar el siguiente comando:
 
 ~~~
  $ mysql -u root -p reto > C:/directorio/bd.sql
 ~~~
 
-de lo contrario solamente hay que copiar y pegar en la consola el código sql mientras estamos en el cliente de mariadb.
-
-Para entrar al cliente de mariadb en la consola hay que igualmente dirigirse al directorio de instalacion de mariadb entonces dirigirse a la carpeta bin y ejecutar el comando mysql -u root -p e ingresar la contarseña del usuario root, misma que se definió en la instalacion de mariadb
+De lo contrario solamente hay que copiar y pegar en la consola el código sql mientras estamos en el cliente de mariadb.
+ 
+Para entrar al cliente de mariadb en la consola hay que igualmente dirigirse al directorio de instalación de mariadb entonces dirigirse a la carpeta bin y ejecutar el comando mysql -u root -p e ingresar la contraseña del usuario root, misma que se definió en la instalación de mariadb
 
 ~~~
 C:\Program Files\MariaDB 10.9\bin> mysql -u root -p
 Enter password:
 ~~~
 
-en este repositorio se encuentra el esqueleto de un api sencilla de express, puedes utilizar este esqueleto o si así los prefieres puedes usar tu propia api de express respetando los directorios routes, config, controller.
+en este repositorio se encuentra el ejemplo visto el día lunes de la api sencilla de express, puedes utilizar este proyecto como referencia o trabajar directamente sobre el código del ejemplo o si así los prefieres puedes usar tu propia api de express respetando los directorios routes, configy controller.
+
+para clonar el repositorio utiliza el siguiente comando:
+
+~~~
+$ git clone https://github.com/Uriel099/Reto_horario.git
+~~~
+
+para clonar el repositorio es necesario contar con git instalado y configurado con github y una vez que el repositorio sea clonado con la consola de comandos ejecutar el comando npm install para instalar las dependencias.
+
+~~~
+$ npm install
+~~~
+
+<br>
 
 en esta api contaremos con los siguientes endpoints:
 
@@ -86,7 +100,7 @@ POST: /grupo
 POST: /Horario
 ~~~
 
-estos endpoints son para recibir la información y registrarla en la bd. La información se recibe en formato json en el body, el siguiente es el ejemplo de como se recibirán los datos de la tabla materia:
+Estos endpoints son para recibir la información y registrarla en la bd. La información se recibe en formato json en el body, el siguiente es el ejemplo de cómo se recibirán los datos de la tabla materia:
 
 ~~~js
 {
@@ -96,10 +110,10 @@ estos endpoints son para recibir la información y registrarla en la bd. La info
 }
 ~~~
 
-No es necesario enviar el ID de cada elemento ya que estos son autoincrementables y se generarán en cada registro.
-
-Es necesario hacer validaciones para comprobar que al ingresar una llave foranea esta exista antes de ingresar los datos en la bd para que esta no arroje excepciones.
-
+No es necesario enviar el ID de cada elemento ya que estos son incrementales y se generarán en cada registro.
+ 
+Es necesario hacer validaciones para comprobar que al ingresar una llave foránea ésta exista antes de ingresar los datos en la bd para que esta no arroje excepciones.
+ 
 Cuando se registre un dato de manera exitosa el endpoint deberá devolver al cliente una respuesta con formato json con un status 201:
 
 ~~~js
@@ -109,16 +123,17 @@ Cuando se registre un dato de manera exitosa el endpoint deberá devolver al cli
 ~~~
 
 para responder en caso algún error es libre, ustedes pueden hacer su propio formato para devolver errores utilizando json.
-
-Y por ultimo solo tendremos un endpoint para obtener informacion de la base de datos que es el siguiente:
+ 
+Y por último solo tendremos un endpoint para obtener información de la base de datos que es el siguiente:
 
 ~~~
 GET /grupo
 ~~~
 
-este endpoint deberá hacerse una consulta combinando la tabla horario, grupo y materia para obtener el horario de un grupo definido por el cliente.
-
+En este endpoint deberá hacerse una consulta combinando la tabla horario, grupo y materia para obtener el horario de un grupo definido por el cliente.
+ 
 ejemplo de datos enviados por el cliente:
+
 
 ~~~js
 {
@@ -142,6 +157,5 @@ ejemplo de datos enviados al cliente
         "Hora": 13,
         "Dia": 4,
     }
-    
 ]
 ~~~
